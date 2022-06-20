@@ -1,1 +1,2 @@
 php artisan make:controller API/AuthController
+php artisan make:model Category -m

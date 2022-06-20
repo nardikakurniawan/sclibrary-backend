@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\API\AuthController;
 use App\Http\Controllers\API\CategoryController;
+use App\Http\Controllers\API\SupportingDocumentController;
 use App\Http\Controllers\API\UserController;
 use App\Http\Controllers\API\VideoController;
 use Illuminate\Http\Request;
@@ -33,7 +34,11 @@ Route::group(['middleware' => ['auth:sanctum']], function() {
     Route::apiResource('/users', UserController::class);
 
     Route::apiResource('/categories', CategoryController::class);
+    
     Route::apiResource('/videos', VideoController::class);
+
+    Route::apiResource('/documents', SupportingDocumentController::class);
+    Route::post('/documents/{id}', [SupportingDocumentController::class, 'update']);
     
 });
 
