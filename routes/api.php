@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\API\AuthController;
+use App\Http\Controllers\API\CategoryController;
 use App\Http\Controllers\API\UserController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -29,6 +30,8 @@ Route::group(['middleware' => ['auth:sanctum']], function() {
     // Route::put('/user/{id}', [AuthController::class, 'update']);
     // Route::apiResource('/users', AuthController::class);
     Route::apiResource('/users', UserController::class);
+
+    Route::apiResource('/categories', CategoryController::class);
     
 });
 

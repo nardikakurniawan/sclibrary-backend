@@ -25,7 +25,7 @@ class AuthController extends Controller
 
     public function register(Request $request)
     {
-        dd($request);
+        // dd($request);
         $validatedData = $request->validate([
             'name' => 'required|string|max:100|min:3',
             'email' => 'required|email|string|max:100|unique:users',
@@ -54,7 +54,7 @@ class AuthController extends Controller
     }
 
     public function update(Request $request) {
-        dd($request);
+        // dd($request);
         // $input = $request->all();
         // $validator = Validator::make($input, [
         //     'name' => 'string|max:100|min:3',
