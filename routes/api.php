@@ -26,15 +26,12 @@ Route::post('/login', [AuthController::class, 'login']);
 
 Route::group(['middleware' => ['auth:sanctum']], function() {
     Route::post('/logout', [AuthController::class, 'logout']);
-    Route::get('/get-users', [AuthController::class, 'getUsers']);
-    Route::get('/user-info', [AuthController::class, 'userInfo']);
     
-    // Route::put('/user/{id}', [AuthController::class, 'update']);
-    // Route::apiResource('/users', AuthController::class);
-    Route::apiResource('/users', UserController::class);
+    Route::apiResource('/users', AuthController::class);
+    Route::post('/users/{id}', [AuthController::class, 'update']);
 
     Route::apiResource('/categories', CategoryController::class);
-    
+
     Route::apiResource('/videos', VideoController::class);
 
     Route::apiResource('/documents', SupportingDocumentController::class);
