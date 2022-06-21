@@ -17,7 +17,9 @@ class SourceCode extends Model
         'updated_at' => 'datetime:Y-m-d H:m:s'
     ];
 
-    protected $guarded = [
-        'id'
-    ];
+    protected $guarded = ['id'];
+
+    public function category() {
+        return $this->belongsTo(Category::class);
+    }
 }

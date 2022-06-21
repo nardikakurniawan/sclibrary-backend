@@ -158,13 +158,9 @@ class AuthController extends Controller
 
         $user = User::create($validatedData);
 
-        $token = $user->createToken('auth-sanctum')->plainTextToken;
-
         return response()->json([
             'message' => 'success',
-            'data' => $user,
-            'access_token' => $token,
-            'token_type' => 'Bearer'
+            'data' => $user
         ]);
     }
 

@@ -18,6 +18,6 @@ class SupportingDocument extends Model
     ];
 
     protected $fillable = [
-        'name', 'description', 'file'
+        'name', 'description', 'file', 'source_code_id'
     ];
 }

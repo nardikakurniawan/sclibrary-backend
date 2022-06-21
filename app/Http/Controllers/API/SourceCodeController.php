@@ -3,12 +3,12 @@
 namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
-use App\Models\SupportingDocument;
+use App\Models\SourceCode;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 
-class SupportingDocumentController extends Controller
+class SourceCodeController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -17,11 +17,11 @@ class SupportingDocumentController extends Controller
      */
     public function index()
     {
-        $supportingDocuments = SupportingDocument::all();
+        $sourceCode = SourceCode::all();
 
         return response()->json([
             'status' => 'success',
-            'data'  => $supportingDocuments
+            'data'  => $sourceCode
         ]);
     }
 
@@ -44,10 +44,15 @@ class SupportingDocumentController extends Controller
     public function store(Request $request)
     {
         $rules = [
-            'name' => 'required|string',
-            'source_code_id' => 'required|integer',
-            'descriptions' => 'string',
-            'file' => 'required|mimes:doc,docx,pdf,txt'
+            'name' => 'required|string|max:100|min:3',
+            'image' => 'image',
+            'description' => 'string',
+            'link' => 'required|string',
+            'version' => 'required|integer',
+            'date' => 'required|date',
+            'file_zip' => 'required|mimes:zip,rar',
+            'file_ebook' => 'required|mimes:doc,docx,pdf,txt',
+            'category_id' => 'required|integer',
         ];
 
         $data = $request->all();
@@ -61,15 +66,21 @@ class SupportingDocumentController extends Controller
             ], 400);     
         }
 
-        if($request->file('file')) {
-            $data['file'] = $request->file('file')->store('supporting-documents');
+        if($request->file('image')) {
+            $data['image'] = $request->file('image')->store('img-source-codes');
+        }
+        if($request->file('file_zip')) {
+            $data['file_zip'] = $request->file('file_zip')->store('file-source-codes');
+        }
+        if($request->file('file_ebook')) {
+            $data['file_ebook'] = $request->file('file_ebook')->store('ebooks');
         }
 
-        $supportingDocument = SupportingDocument::create($data);
+        $sourceCode = SourceCode::create($data);
 
         return response()->json([
             'status' => 'success',
-            'data'  => $supportingDocument
+            'data'  => $sourceCode
         ]);
     }
 
@@ -81,18 +92,19 @@ class SupportingDocumentController extends Controller
      */
     public function show($id)
     {
-        $supportingDocument = SupportingDocument::find($id);
+        $sourceCode = SourceCode::find($id);
 
-        if(!$supportingDocument) {
+        if(!$sourceCode) {
             return response()->json([
                 'status' => 'error',
-                'message' => 'Document not found'
+                'message' => 'Source Code not found'
             ], 404); 
         }
 
         return response()->json([
             'status' => 'success',
-            'data'  => $supportingDocument
+            'data'  => $sourceCode,
+            'category'  => $sourceCode->category
         ]);
     }
 
@@ -117,16 +129,20 @@ class SupportingDocumentController extends Controller
     public function update(Request $request, $id)
     {
         $rules = [
-            'name' => 'string',
-            'source_code_id' => 'integer',
-            'descriptions' => 'string',
-            'file' => 'mimes:doc,docx,pdf,txt'
+            'name' => 'string|max:100|min:3',
+            'image' => 'image',
+            'description' => 'string',
+            'link' => 'string',
+            'version' => 'integer',
+            'date' => 'date',
+            'file_zip' => 'mimes:zip,rar',
+            'file_ebook' => 'mimes:doc,docx,pdf,txt',
+            'category_id' => 'integer',
         ];
 
         $data = $request->all();
 
         $validator = Validator::make($data, $rules);
-
 
         if($validator->fails()){
             return response()->json([
@@ -135,28 +151,31 @@ class SupportingDocumentController extends Controller
             ], 400);     
         }
 
-        if($request->file('file')) {
-            // if($request->oldImage) {
-            //     Storage::delete($request->oldImage);
-            // }
-            $data['file'] = $request->file('file')->store('supporting-documents');
+        if($request->file('image')) {
+            $data['image'] = $request->file('image')->store('img-source-codes');
+        }
+        if($request->file('file_zip')) {
+            $data['file_zip'] = $request->file('file_zip')->store('file-source-codes');
+        }
+        if($request->file('file_ebook')) {
+            $data['file_ebook'] = $request->file('file_ebook')->store('ebooks');
         }
 
-        $supportingDocument = SupportingDocument::find($id);
+        $sourceCode = SourceCode::find($id);
 
-        if(!$supportingDocument) {
+        if(!$sourceCode) {
             return response()->json([
                 'status' => 'error',
-                'message' => 'document not found'
+                'message' => 'source code not found'
             ], 404); 
         }
 
-        $supportingDocument->fill($data);
-        $supportingDocument->save();
+        $sourceCode->fill($data);
+        $sourceCode->save();
 
         return response()->json([
             'status' => 'success',
-            'data'  => $supportingDocument
+            'data'  => $sourceCode
         ]);
     }
 
@@ -168,20 +187,20 @@ class SupportingDocumentController extends Controller
      */
     public function destroy($id)
     {
-        $supportingDocument = SupportingDocument::find($id);
+        $sourceCode = SourceCode::find($id);
 
-        if(!$supportingDocument) {
+        if(!$sourceCode) {
             return response()->json([
                 'status' => 'error',
-                'message' => 'Document not found'
+                'message' => 'source code not found'
             ], 404); 
         }
 
-        $supportingDocument->delete();
+        $sourceCode->delete();
 
         return response()->json([
             'status' => 'success',
-            'message' => 'Document deleted'
+            'message' => 'source code deleted'
         ]);
     }
 }

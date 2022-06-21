@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\API\AuthController;
 use App\Http\Controllers\API\CategoryController;
+use App\Http\Controllers\API\SourceCodeController;
 use App\Http\Controllers\API\SupportingDocumentController;
 use App\Http\Controllers\API\UserController;
 use App\Http\Controllers\API\VideoController;
@@ -21,7 +22,6 @@ use Illuminate\Support\Facades\Route;
 
 Route::post('/register', [AuthController::class, 'register']);
 Route::post('/login', [AuthController::class, 'login']);
-// Route::put('/user/{id}', [AuthController::class, 'Update']);
 
 
 Route::group(['middleware' => ['auth:sanctum']], function() {
@@ -36,6 +36,9 @@ Route::group(['middleware' => ['auth:sanctum']], function() {
 
     Route::apiResource('/documents', SupportingDocumentController::class);
     Route::post('/documents/{id}', [SupportingDocumentController::class, 'update']);
+
+    Route::apiResource('/source-codes', SourceCodeController::class);
+    Route::post('/source-codes/{id}', [SourceCodeController::class, 'update']);
     
 });
 

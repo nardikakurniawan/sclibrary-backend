@@ -18,6 +18,6 @@ class Video extends Model
     ];
 
     protected $fillable = [
-        'name', 'link', 'description'
+        'name', 'link', 'description', 'source_code_id'
     ];
 }

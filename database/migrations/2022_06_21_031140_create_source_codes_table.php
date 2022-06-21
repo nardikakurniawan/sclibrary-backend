@@ -16,8 +16,6 @@ return new class extends Migration
         Schema::create('source_codes', function (Blueprint $table) {
             $table->id();
             $table->foreignId('category_id');
-            $table->foreignId('video_id');
-            $table->foreignId('document_id');
             $table->string('name');
             $table->string('image')->nullable();
             $table->string('link')->nullable();

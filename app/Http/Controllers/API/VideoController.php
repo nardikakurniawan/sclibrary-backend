@@ -44,6 +44,7 @@ class VideoController extends Controller
     {
         $rules = [
             'name' => 'required|string',
+            'source_code_id' => 'required|integer',
             'link' => 'required|string',
             'description' => 'string'
         ];
@@ -112,6 +113,7 @@ class VideoController extends Controller
     {
         $rules = [
             'name' => 'string',
+            'source_code_id' => 'integer',
             'link' => 'string',
             'description' => 'string'
         ];
