@@ -17,7 +17,8 @@ class SourceCodeController extends Controller
      */
     public function index()
     {
-        $sourceCode = SourceCode::all();
+        // $sourceCode = SourceCode::all();
+        $sourceCode = SourceCode::with('category', 'videos', 'supportingDocuments')->get();
 
         return response()->json([
             'status' => 'success',
@@ -92,7 +93,8 @@ class SourceCodeController extends Controller
      */
     public function show($id)
     {
-        $sourceCode = SourceCode::find($id);
+        // $sourceCode = SourceCode::find($id);
+        $sourceCode = SourceCode::with('category')->where('id', $id)->first();
 
         if(!$sourceCode) {
             return response()->json([
@@ -103,8 +105,7 @@ class SourceCodeController extends Controller
 
         return response()->json([
             'status' => 'success',
-            'data'  => $sourceCode,
-            'category'  => $sourceCode->category
+            'data'  => $sourceCode
         ]);
     }
 

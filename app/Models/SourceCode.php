@@ -22,4 +22,12 @@ class SourceCode extends Model
     public function category() {
         return $this->belongsTo(Category::class);
     }
+
+    public function videos() {
+        return $this->hasMany(Video::class);
+    }
+
+    public function supportingDocuments() {
+        return $this->hasMany(SupportingDocument::class);
+    }
 }
