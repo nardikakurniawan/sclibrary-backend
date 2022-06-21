@@ -13,11 +13,19 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('videos', function (Blueprint $table) {
+        Schema::create('source_codes', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('category_id');
+            $table->foreignId('video_id');
+            $table->foreignId('document_id');
             $table->string('name');
-            $table->string('link');
+            $table->string('image')->nullable();
+            $table->string('link')->nullable();
             $table->text('description')->nullable();
+            $table->float('version');
+            $table->date('date');
+            $table->string('file_zip');
+            $table->string('file_ebook')->nullable();
             $table->timestamps();
         });
     }
@@ -29,6 +37,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('videos');
+        Schema::dropIfExists('source_codes');
     }
 };

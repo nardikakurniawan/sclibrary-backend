@@ -44,7 +44,8 @@ class VideoController extends Controller
     {
         $rules = [
             'name' => 'required|string',
-            'link' => 'required|string'
+            'link' => 'required|string',
+            'description' => 'string'
         ];
 
         $data = $request->all();
@@ -111,7 +112,8 @@ class VideoController extends Controller
     {
         $rules = [
             'name' => 'string',
-            'link' => 'string'
+            'link' => 'string',
+            'description' => 'string'
         ];
 
         $data = $request->all();
