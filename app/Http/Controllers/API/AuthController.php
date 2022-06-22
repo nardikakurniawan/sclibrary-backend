@@ -37,6 +37,19 @@ class AuthController extends Controller
         ]);
     }
 
+    public function me()
+    {
+      $userLogin = Auth::user();
+    //   $user = User::find($userLogin);
+
+    //   dd($session);
+
+      return response()->json([
+        'status' => 'success',
+        'data' => $userLogin
+    ]);
+    }
+
     public function store(Request $request)
     {
         $rules = [
