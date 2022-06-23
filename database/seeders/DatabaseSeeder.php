@@ -49,57 +49,70 @@ class DatabaseSeeder extends Seeder
         ]);
 
         SourceCode::create([
-            'name' => 'Facebook Web',
+            'name' => 'Belajar Laravel 8',
             'category_id'=> 1,
             'link'=> 'https://github.com/',
             'version'=> '4',
             'date'=> '2022-06-21 05:20:15',
             'description'=> 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Est, quisquam.',
-            'image'=> 'img-source-codes/OiTY7rt6HLfhn9O80ZzQtHZ2E8h0rmAZhKhLTTgA.webp',
+            'image'=> 'file-dummy/laravel8.jpg',
             'file_zip'=> 'file-source-codes/RGUWqGUXr8Vsl9gGcmwxvNpjz0Krg1rBWH0pRbL4.zip',
-            'file_ebook'=> 'ebooks/Dhu2SWmtf525yHyoIdDW6h6SvyKHuwPWa94mACF0.pdf',
+            'file_ebook'=> 'file-dummy/ebook-laravel.pdf',
         ]);
 
         SourceCode::create([
-            'name' => 'Game Mobile Legend',
+            'name' => 'Belajar HTML5',
             'category_id'=> 2,
             'link'=> 'https://github.com/',
             'version'=> '4',
             'date'=> '2022-06-21 05:20:15',
             'description'=> 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Est, quisquam.',
-            'image'=> 'img-source-codes/OiTY7rt6HLfhn9O80ZzQtHZ2E8h0rmAZhKhLTTgA.webp',
+            'image'=> 'file-dummy/html5.jpg',
             'file_zip'=> 'file-source-codes/RGUWqGUXr8Vsl9gGcmwxvNpjz0Krg1rBWH0pRbL4.zip',
-            'file_ebook'=> 'ebooks/Dhu2SWmtf525yHyoIdDW6h6SvyKHuwPWa94mACF0.pdf',
+            'file_ebook'=> 'file-dummy/ebook-html.pdf',
         ]);
 
         Video::create([
-            "name" => "Video 1",
-            "link" => "sasadadadasd",
-            "description" => "ASBDJABasdaaDJANDANDSA",
+            "name" => "1. Apa itu HTML5?",
+            "link" => "Q2VqCG13ejA",
+            "description" => "Mari kita mulai belajar mengenai HTML5",
             "source_code_id" => 2
         ]);
         Video::create([
-            "name" => "Video 2",
-            "link" => "sasadadadasd",
-            "description" => "ASBDJABasdaaDJANDANDSA",
+            "name" => "2. Semantic HTML5?",
+            "link" => "o3m15BWi2HM",
+            "description" => "Penjelasan mengenai Semantic HTML5",
             "source_code_id" => 2
         ]);
+        
         Video::create([
-            "name" => "Video 3",
-            "link" => "sasadadadasd",
-            "description" => "ASBDJABasdaaDJANDANDSA",
-            "source_code_id" => 2
-        ]);
-        Video::create([
-            "name" => "Pengertian PHP",
-            "link" => "sasadadadasd",
-            "description" => "ASBDJABasdaaDJANDANDSA",
+            "name" => "1. Intro",
+            "link" => "HqAMb6kqlLs",
+            "description" => "Kali ini kita akan memulai seri baru untuk belajar Laravel 8.. Let's Go!",
             "source_code_id" => 1
         ]);
         Video::create([
-            "name" => "Install PHP",
-            "link" => "sasadadadasd",
-            "description" => "ASBDJABasdaaDJANDANDSA",
+            "name" => "2. Instalasi & Konfigurasi",
+            "link" => "pZqk57Xvujs",
+            "description" => "Menginstall laravel 8 pada sistem operasi MacOS dan Windows",
+            "source_code_id" => 1
+        ]);
+        Video::create([
+            "name" => "3. Struktur Folder, Routes & View",
+            "link" => "u7zS2XpMpsc",
+            "description" => "Mempelajari struktur folder, routes dan view pada laravel 8",
+            "source_code_id" => 1
+        ]);
+        Video::create([
+            "name" => "4. Blade Templating Engine",
+            "link" => "9jrD0wcfq1g",
+            "description" => "Mengenal fitur Blade Templating Engine pada laravel 8",
+            "source_code_id" => 1
+        ]);
+        Video::create([
+            "name" => " 5. Model, Collection & Controller",
+            "link" => "ptWgufbjURA",
+            "description" => "Membahas mengenai komponen Model & Controller",
             "source_code_id" => 1
         ]);
 

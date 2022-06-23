@@ -94,7 +94,7 @@ class SourceCodeController extends Controller
     public function show($id)
     {
         // $sourceCode = SourceCode::find($id);
-        $sourceCode = SourceCode::with('category')->where('id', $id)->first();
+        $sourceCode = SourceCode::with('category', 'videos', 'supportingDocuments')->where('id', $id)->first();
 
         if(!$sourceCode) {
             return response()->json([
