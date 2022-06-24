@@ -119,8 +119,8 @@ class SupportingDocumentController extends Controller
         $rules = [
             'name' => 'string',
             'source_code_id' => 'integer',
-            'descriptions' => 'string',
-            'file' => 'mimes:doc,docx,pdf,txt'
+            'description' => 'string',
+            'file' => ''
         ];
 
         $data = $request->all();

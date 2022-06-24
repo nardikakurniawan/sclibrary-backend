@@ -56,7 +56,7 @@ class AuthController extends Controller
             'name' => 'required|string|max:100|min:3',
             'email' => 'required|email|string|max:100|unique:users',
             'password' => 'required|string|min:8',
-            'image' => 'image',
+            'image',
             'level' => 'in:Admin,User'
         ];
 
@@ -89,11 +89,14 @@ class AuthController extends Controller
     {
         $rules = [
             'name' => 'string|max:100|min:3',
-            'email' => 'email|string|max:100|unique:users',
-            'password' => 'string|min:8',
-            'image' => 'image',
+            'email' => 'email|string|max:100',
+            'password' => 'string',
+            'image' => '',
             'level' => 'in:Admin,User'
         ];
+        // $rulesPassword = [
+        //     'password' => 'nullable|min:8'
+        // ];
 
         $data = $request->all();
 
@@ -106,6 +109,17 @@ class AuthController extends Controller
                 'message' => $validator->errors()
             ], 400);     
         }
+
+        
+        // dd($request['password']);
+        // dd($request->all());
+
+        $data['password'] = Hash::make($data['password']);
+        // if(!$request['password'] === "") {
+        //     $request->user()->update([
+        //         'password' => Hash::make($request->get('password'))
+        //     ]);
+        // }
 
         if($request->file('image')) {
             // if($request->oldImage) {
