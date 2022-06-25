@@ -46,13 +46,8 @@ class SourceCodeController extends Controller
     {
         $rules = [
             'name' => 'required|string|max:100|min:3',
-            'image' => 'image',
-            'description' => 'string',
-            'link' => 'required|string',
             'version' => 'required|integer',
-            'date' => 'required|date',
             'file_zip' => 'required|mimes:zip,rar',
-            'file_ebook' => 'required|mimes:doc,docx,pdf,txt',
             'category_id' => 'required|integer',
         ];
 
@@ -72,9 +67,6 @@ class SourceCodeController extends Controller
         }
         if($request->file('file_zip')) {
             $data['file_zip'] = $request->file('file_zip')->store('file-source-codes');
-        }
-        if($request->file('file_ebook')) {
-            $data['file_ebook'] = $request->file('file_ebook')->store('ebooks');
         }
 
         $sourceCode = SourceCode::create($data);
@@ -131,14 +123,12 @@ class SourceCodeController extends Controller
     {
         $rules = [
             'name' => 'string|max:100|min:3',
-            'image' => 'image',
-            'description' => 'string',
-            'link' => 'string',
+            'image' => '',
+            'description' => '',
+            'link' => '',
             'version' => 'integer',
-            'date' => 'date',
-            'file_zip' => 'mimes:zip,rar',
-            'file_ebook' => 'mimes:doc,docx,pdf,txt',
-            'category_id' => 'integer',
+            'file_zip' => '',
+            'category_id' => '',
         ];
 
         $data = $request->all();
@@ -157,9 +147,6 @@ class SourceCodeController extends Controller
         }
         if($request->file('file_zip')) {
             $data['file_zip'] = $request->file('file_zip')->store('file-source-codes');
-        }
-        if($request->file('file_ebook')) {
-            $data['file_ebook'] = $request->file('file_ebook')->store('ebooks');
         }
 
         $sourceCode = SourceCode::find($id);

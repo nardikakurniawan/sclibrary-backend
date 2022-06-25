@@ -53,11 +53,10 @@ class DatabaseSeeder extends Seeder
             'category_id'=> 1,
             'link'=> 'https://github.com/',
             'version'=> '4',
-            'date'=> '2022-06-21 05:20:15',
             'description'=> 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Est, quisquam.',
             'image'=> 'file-dummy/laravel8.jpg',
             'file_zip'=> 'file-source-codes/RGUWqGUXr8Vsl9gGcmwxvNpjz0Krg1rBWH0pRbL4.zip',
-            'file_ebook'=> 'file-dummy/ebook-laravel.pdf',
+            
         ]);
 
         SourceCode::create([
@@ -65,11 +64,9 @@ class DatabaseSeeder extends Seeder
             'category_id'=> 2,
             'link'=> 'https://github.com/',
             'version'=> '4',
-            'date'=> '2022-06-21 05:20:15',
             'description'=> 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Est, quisquam.',
             'image'=> 'file-dummy/html5.jpg',
             'file_zip'=> 'file-source-codes/RGUWqGUXr8Vsl9gGcmwxvNpjz0Krg1rBWH0pRbL4.zip',
-            'file_ebook'=> 'file-dummy/ebook-html.pdf',
         ]);
 
         Video::create([
