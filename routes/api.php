@@ -31,6 +31,7 @@ Route::group(['middleware' => ['auth:sanctum']], function() {
     
     Route::apiResource('/users', AuthController::class);
     Route::post('/users/{id}', [AuthController::class, 'update']);
+    Route::put('/change-password', [AuthController::class, 'changePassword']);
 
     Route::apiResource('/categories', CategoryController::class);
 

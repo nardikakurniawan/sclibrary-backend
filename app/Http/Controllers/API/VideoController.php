@@ -115,7 +115,7 @@ class VideoController extends Controller
             'name' => 'string',
             'source_code_id' => 'integer',
             'link' => 'string',
-            'description' => 'string'
+            'description' => ''
         ];
 
         $data = $request->all();

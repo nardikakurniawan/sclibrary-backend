@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Validation\ValidationException;
 
 class AuthController extends Controller
 {
@@ -90,18 +91,14 @@ class AuthController extends Controller
         $rules = [
             'name' => 'string|max:100|min:3',
             'email' => 'email|string|max:100',
-            'password' => 'string',
+            // 'password' => 'string',
             'image' => '',
             'level' => 'in:Admin,User'
         ];
-        // $rulesPassword = [
-        //     'password' => 'nullable|min:8'
-        // ];
 
         $data = $request->all();
 
         $validator = Validator::make($data, $rules);
-
 
         if($validator->fails()){
             return response()->json([
@@ -110,21 +107,10 @@ class AuthController extends Controller
             ], 400);     
         }
 
-        
-        // dd($request['password']);
-        // dd($request->all());
-
-        $data['password'] = Hash::make($data['password']);
-        // if(!$request['password'] === "") {
-        //     $request->user()->update([
-        //         'password' => Hash::make($request->get('password'))
-        //     ]);
-        // }
+        // $data['password'] = Hash::make($data['password']);
+       
 
         if($request->file('image')) {
-            // if($request->oldImage) {
-            //     Storage::delete($request->oldImage);
-            // }
             $data['image'] = $request->file('image')->store('img-users');
         }
 
@@ -140,10 +126,68 @@ class AuthController extends Controller
         $user->fill($data);
         $user->save();
 
+        // $request->validate([
+        //     'name' => 'string|max:100|min:3',
+        //     'email' => 'email|string|max:100',
+        //     'password' => 'string',
+        //     'image' => '',
+        //     'level' => 'in:Admin,User'
+        // ]);
+
+        // $request['password'] = Hash::make($request['password']);
+
+        // if($request->file('image')) {
+        //         $request['image'] = $request->file('image')->store('img-users');
+        //     }
+
+        // $user = User::find($id);
+
+        // if(!$user) {
+        //     return response()->json([
+        //         'status' => 'error',
+        //         'message' => 'User not found'
+        //     ], 404); 
+        // }
+
+        // $user->update([
+        //     'name' => $request->name,
+        //     'email' => $request->email,
+        //     'password' => $request->password,
+        //     'image' => $request->image,
+        //     'level' => $request->level
+        // ]);
+
         return response()->json([
             'status' => 'success',
             'data'  => $user
         ]);
+    }
+
+    public function changePassword(Request $request) 
+    {
+        $request->validate([
+                // 'current_password' => 'required',
+                'password' => 'required|min:8',
+        ]);
+
+        // if (!Hash::check($request->current_password, auth()->user()->password)) {
+        //     return response()->json([
+        //         'status' => 'error',
+        //         'message'  => 'Your current password does not match with our record!'
+        //     ]);
+        // }
+
+        auth()->user()->update(['password' => Hash::make($request->password)]);
+        // dd($user);
+
+        return response()->json([
+            'status' => 'success',
+            'message'  => 'Your paswword been update'
+        ]);
+        
+        // throw ValidationException::withMessages([
+        //     'current_password' => 'Your current password does not match with our record!'
+        // ]);
     }
 
     public function destroy($id)
