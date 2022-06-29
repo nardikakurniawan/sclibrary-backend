@@ -69,7 +69,7 @@ class AuthController extends Controller
             return response()->json([
                 'status' => 'error',
                 'message' => $validator->errors()
-            ], 400);     
+            ], 500);     
         }
 
         $data['password'] = Hash::make($data['password']);
